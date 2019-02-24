@@ -1,0 +1,23 @@
+body{
+    background-color: aquamarine;
+    
+}
+
+.headings{
+    text-align: center;
+}
+
+table, th, td {
+    margin: 10px;
+    border: 1px solid black;
+}
+
+input{
+    background-color: aquamarine;
+}
+
+img{
+    display: block;
+    margin-left: auto;
+	margin-right: auto;
+}
