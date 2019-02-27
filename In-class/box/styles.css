@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.box{
+    width:150px;
+    height: 100px;
+    margin: 10px;
+    border: 2px rgb(145,95,0) solid;
+    border-radius: 5%;
+    background-color: orange;
+    box-shadow: 3px 3px 1px 0px rgba(0,0,0,0.75);
+}
+
+.box:hover{
+    width:154px;
+    height: 104px;
+    margin: 8px;
+    border: 2px rgb(145,95,0) solid;
+    border-radius: 5%;
+    background-color: rgb(245, 179, 56);
+    box-shadow: 3px 3px 1px 0px rgba(0,0,0,0.75);
+}
+
+@media all and (max-width: 750px){
+    .box{
+        width:120px;
+        height: 90px;
+        margin: 7px;
+    }
+
+    .box:hover{
+        width:124px;
+        height: 94px;
+        margin: 5px;
+    }
+}
