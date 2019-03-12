@@ -2,7 +2,8 @@ let todoListData = [];
 const input = document.getElementById("todo-input");
 const todoCount = document.getElementById("todo-count");
 const todoList = document.getElementById("todo-list");
-let idx = 0;
+let idx=0;
+let button = "all";
 input.addEventListener("keyup", event => {
     if (event.keyCode === 13 && event.target.value !== ""){
         let newStuff = addNewItem(event.target.value);
@@ -14,6 +15,7 @@ input.addEventListener("keyup", event => {
 });
 
 function filterHandler(filterType){
+    button = filterType;
     todoList.innerHTML = "";
     if (filterType === "all"){
         for (let data of todoListData){
@@ -31,18 +33,9 @@ function filterHandler(filterType){
 }
 
 function deleteAllHandler(){
-    let i=0;
-    let child = todoList.firstChild;
-    while (child){
-        let sib = child.nextSibling;
-        if(todoListData[i].node === child && todoListData[i].isComplete){
-            todoList.removeChild(child);
-        }
-        child = sib;
-        i++;
-    }
     todoListData = todoListData.filter(ele => !ele.isComplete);
     todoCountHandler();
+    filterHandler(button);
 }
 
 function todoCountHandler(){
