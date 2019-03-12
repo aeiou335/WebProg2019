@@ -1,10 +1,10 @@
 let todoListData = [];
 const input = document.getElementById("todo-input");
 const todoCount = document.getElementById("todo-count");
+const todoList = document.getElementById("todo-list");
 let idx = 0;
 input.addEventListener("keyup", event => {
     if (event.keyCode === 13 && event.target.value !== ""){
-        const todoList = document.getElementById("todo-list");
         let newStuff = addNewItem(event.target.value);
         todoList.appendChild(newStuff);
         input.value = "";
@@ -12,6 +12,38 @@ input.addEventListener("keyup", event => {
         todoCountHandler();
     }
 });
+
+function filterHandler(filterType){
+    todoList.innerHTML = "";
+    if (filterType === "all"){
+        for (let data of todoListData){
+            todoList.append(data.node);
+        }
+    } else if (filterType === "active"){
+        for (let data of todoListData){
+            if (!data.isComplete) todoList.append(data.node);
+        }
+    } else {
+        for (let data of todoListData){
+            if (data.isComplete) todoList.append(data.node);
+        }
+    }
+}
+
+function deleteAllHandler(){
+    let i=0;
+    let child = todoList.firstChild;
+    while (child){
+        let sib = child.nextSibling;
+        if(todoListData[i].node === child && todoListData[i].isComplete){
+            todoList.removeChild(child);
+        }
+        child = sib;
+        i++;
+    }
+    todoListData = todoListData.filter(ele => !ele.isComplete);
+    todoCountHandler();
+}
 
 function todoCountHandler(){
     todoCount.innerHTML = todoListData.filter(ele => !ele.isComplete).length + " left";
@@ -25,10 +57,13 @@ function deleteHandler(link){
 
 function checkboxClickedHandler(link){
     const h1Node = link.parentNode.parentNode.childNodes[1];
+    let idx = 0;
     if (link.checked){
         for (let i=0; i<todoListData.length; i++){
-            if (todoListData[i].node === link.parentNode.parentNode) 
+            if (todoListData[i].node === link.parentNode.parentNode){
                 todoListData[i].isComplete=true;
+                idx = i;
+            }
         }
         const sNode = document.createElement("S");
         sNode.style.fontWeight = "lighter";
@@ -38,13 +73,16 @@ function checkboxClickedHandler(link){
     }
     else{
         for (let i=0; i<todoListData.length; i++){
-            if (todoListData[i].node === link.parentNode.parentNode) 
+            if (todoListData[i].node === link.parentNode.parentNode){
                 todoListData[i].isComplete=false;
+                idx = i;
+            }                
         }
         const text = h1Node.childNodes[0].innerHTML;
         h1Node.removeChild(h1Node.childNodes[0]);
         h1Node.innerHTML = text;
     }
+    todoListData[idx].node = link.parentNode.parentNode;
     todoCountHandler();
 }
 

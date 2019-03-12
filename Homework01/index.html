@@ -19,11 +19,11 @@
             <footer id="todo-footer" class="todo-app__footer">
                 <div class="todo-app__total" id="todo-count">0 left</div>
                 <ul class="todo-app__view-buttons">
-                    <li class="todo-app__view-buttons">All</li>
-                    <li>Active</li>
-                    <li>Completed</li>
+                    <li class="todo-app__view-buttons"><button onclick="filterHandler('all')">All</button></li>
+                    <li class="todo-app__view-buttons"><button onclick="filterHandler('active')">Active</button></li>
+                    <li class="todo-app__view-buttons"><button onclick="filterHandler('completed')">Completed</button></li>
                 </ul>
-                <div class="todo-app__clean">Clear completed</div>
+                <div class="todo-app__clean"><button onclick="deleteAllHandler()">Clear completed</button></div>
             </footer>
         </div>
         <script type="text/javascript" src="main.js"></script>
