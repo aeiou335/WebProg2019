@@ -1,0 +1,25 @@
+
+
+.title {
+  text-align: center;
+  margin: 50px;
+  color: rgb(37, 37, 37);
+}
+
+.form {
+  padding: 50px;
+}
+
+.author {
+  margin-bottom: 16px;
+  margin-left: 0px;
+}
+
+.authorPosts {
+  margin-bottom: 20px;
+}
+
+.authorBtn {
+  width: 100px;
+  margin-right: 10px;
+}
